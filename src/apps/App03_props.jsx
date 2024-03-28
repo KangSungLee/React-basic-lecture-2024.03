@@ -1,14 +1,14 @@
 import './App.css';
-import Card from '../components/Card2';
+import Card2 from '../components/Card2';
 
 export default function App() {
-  const James = {id:1, name:'James', job:'Back-end programmer'};
-  const Maira = {id:2, name:'Maria', job:'React JS programmer'};
+  const james = {id:1, name:'James', job:'Back-end programmer'};
+  const maira = {id:2, name:'Maria', job:'React JS programmer'};
   return (
     <>  
-      <Card person={James} />
+      <Card2 person={james} />
       <br />
-      <Card person={Maira}/>
+      <Card2 person={maira}/>
     </>
   );
 }
