@@ -20,7 +20,7 @@ export default function App() {
     setEvals('')
   }
 
-  const handleChange = (event) => {
+  const d = (event) => {
     setEvals(event.target.value)
   }
 
@@ -29,7 +29,7 @@ export default function App() {
         <table>
             <tr>
                 <td colspan="4">
-                  <input type="text" name="evals" value={evals} onChange={handleChange}/>
+                  <input type="text" name="evals" value={evals} onChange={d}/>
                   <button className='abcd'></button>
                 </td>
             </tr>
