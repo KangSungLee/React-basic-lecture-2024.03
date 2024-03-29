@@ -2,32 +2,35 @@ import { useState } from 'react';
 import '../apps/App.css';
 
 export default function User2() {
-  const initUsers = [{id:1, name:'admin', email:'admin@gmail.com'},
-                     {id:2, name:'james', email:'james@gmail.com'}];
+  const initUsers = [
+  {id:1, name:'admin', email:'admin@gmail.com'},
+  {id:2, name:'james', email:'james@gmail.com'}
+];
+
   const [users, setUsers] = useState(initUsers);
   const [form, setForm] = useState({id: '', name: '', email: ''}); 
 
   const handleSubmit = (event) => {
     event.preventDefault();   // submit button을 눌으면 페이지가 자동적으로 바뀌는것을 방지
-    const user = users.find(val => val.id == form.id);
-    const newUsers = [];
-    if (user) {
-      for (let val of users)
-        if (val.id == form.id)
-          newUsers.push(form);
-        else
-          newUsers.push(val);
-      setUsers(newUsers);
+    const exisUser = users.find(user => user.id === form.id);
+    // const newUsers = [];
+    if (exisUser) {
+      setUsers(users.map(user => (user.id === form.id) ? form : user))
+      // for (let val of users)
+      //   if (val.id == form.id)
+      //     newUsers.push(form);
+      //   else
+      //     newUsers.push(val);
+      // setUsers(newUsers);
     } else
       setUsers([...users, form]);
-      
-    console.log(form);
   }
 
   const handleChange = (event) => {
     const {name, value} = event.target;
     setForm({ ...form, [name]: value});
   }
+
   return (
     <div className="card">    
       <h1>사용자 목록</h1>
@@ -63,7 +66,7 @@ export default function User2() {
       </form>
       <button onClick={ () => {
         const id = prompt('ID 값을 입력하세요.')
-        setUsers(users.filter(x => x.id != id));
+        setUsers(users.filter(x => x.id !== id));
       }}>삭제</button>
     </div>
   );
